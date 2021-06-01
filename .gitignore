@@ -39,3 +39,15 @@ luac.out
 *.x86_64
 *.hex
 
+winter_2018.sublime-project
+
+flash/
+itembuilds/
+maps/
+materials/
+models/
+panorama/
+particles/
+soundevents/
+sounds/
+resource/flash3/
