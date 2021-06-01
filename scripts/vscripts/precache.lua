@@ -60,7 +60,7 @@ function InitialPrecache( context )
 	PrecacheResource( "particle", "particles/creatures/spectral_tusk_mage/spectral_tusk_mage_tower_destruction.vpcf", context )
 
 	-- Round 3
-	PrecacheUnitByNameSync( "npc_dota_creature_multiplying_eidelon", context )
+	PrecacheUnitByNameSync	( "npc_dota_creature_eidelon", context )
 	PrecacheUnitByNameSync( "npc_dota_creature_jakiro", context )
 	PrecacheResource( "particle_folder", "particles/units/heroes/hero_jakiro", context )
 	PrecacheResource( "particle", "particles/units/heroes/hero_earthshaker/earthshaker_totem_cast.vpcf", context )

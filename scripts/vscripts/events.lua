@@ -205,3 +205,7 @@ function CHoldout:OnItemPickedUp( event )
 end
 
 --------------------------------------------------------------------------------------------------------
+function CHoldout:OnPlayerPickHero(event)
+	local hero = EntIndexToHScript(event.heroindex)
+	hero:SetGold(2500, false)
+end
