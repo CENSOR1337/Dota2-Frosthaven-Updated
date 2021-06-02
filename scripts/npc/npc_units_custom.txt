@@ -588,12 +588,12 @@
 		}
 	}
 
-	"npc_dota_creature_multiplying_eidelon"
+	"npc_dota_creature_eidelon"
 	{
 		// General
 		//
 		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
-		"Model"						"models/items/enigma/eidolon/tentacular_conqueror_tentacular_conqueror_eidolons/tentacular_conqueror_tentacular_conqueror_eidolons.vmdl"
+		"Model"						models/heroes/enigma/eidelon.vmdl	//"models/items/enigma/eidolon/tentacular_conqueror_tentacular_conqueror_eidolons/tentacular_conqueror_tentacular_conqueror_eidolons.vmdl"
 		"SoundSet"					"Hero_Enigma"
 		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
 		"ModelScale"				".8"
