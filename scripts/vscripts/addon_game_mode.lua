@@ -65,6 +65,7 @@ function CHoldout:InitGameMode()
 	self._bBossHasDied = false
 	self._hRubick = nil
 	self._szDevHero = nil
+	
 
 	if self._nAccumulatedPoints == nil then
 		self._nAccumulatedPoints = 0
@@ -174,7 +175,11 @@ function CHoldout:InitGameMode()
 	ListenToGameEvent( "dota_non_player_used_ability", Dynamic_Wrap( CHoldout, "OnNonPlayerUsedAbility" ), self )
 	ListenToGameEvent( "dota_player_used_ability", Dynamic_Wrap( CHoldout, "OnPlayerUsedAbility" ), self )
 	ListenToGameEvent( "dota_item_picked_up", Dynamic_Wrap( CHoldout, "OnItemPickedUp" ), self )
-	ListenToGameEvent("dota_player_pick_hero", Dynamic_Wrap( CHoldout, "OnPlayerPickHero"), self)
+	ListenToGameEvent( "dota_player_pick_hero", Dynamic_Wrap( CHoldout, "OnPlayerPickHero"), self)
+
+	-- Drop neutral item --
+	ListenToGameEvent( "entity_killed", Dynamic_Wrap(CHoldout, "DropTheNeutralItem"), self)
+
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldout, "ModifierGainedFilter" ), self )
 	--ListenToGameEvent( "player_reconnected", Dynamic_Wrap( CHoldout, "OnPlayerReconnected" ), self )
 

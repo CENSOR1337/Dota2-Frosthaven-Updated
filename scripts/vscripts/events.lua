@@ -1,3 +1,6 @@
+local NeutralItemsData = {}
+local CurrentTier = 1
+local SpawnIndex = 0
 
 function CHoldout:OnNPCSpawned( event )
 	local spawnedUnit = EntIndexToHScript( event.entindex )
@@ -206,6 +209,43 @@ end
 
 --------------------------------------------------------------------------------------------------------
 function CHoldout:OnPlayerPickHero(event)
-	local hero = EntIndexToHScript(event.heroindex)
-	hero:SetGold(99999, false)
+	hero:SetGold(1600, false)
+
+	NeutralItems = LoadKeyValues("scripts/npc/neutral_items.txt")
+	if(NeutralItems) then
+		for key, value in pairs(NeutralItems) do
+			NeutralItemsData[key] = value["items"]
+		end
+	end
+	
+end
+
+function CHoldout:DropTheNeutralItem(event)
+
+	local attackerUnit = EntIndexToHScript( event.entindex_attacker or -1 )
+	local killedUnit = EntIndexToHScript( event.entindex_killed )
+
+
+	if killedUnit and killedUnit:IsCreature() then
+		if attackerUnit and attackerUnit:IsRealHero() then
+			if killedUnit:IsCreepHero() then
+
+				LastTier = TableLength(NeutralItemsData)
+				if RollPercentage(20) then
+				if (CurrentTier <= LastTier) then
+					if SpawnIndex <= TableLength(NeutralItemsData[tostring(CurrentTier)]) then
+							DropNeutralItemAtPositionForHero(GetPotentialNeutralItemDrop(CurrentTier, attackerUnit:GetTeam()), killedUnit:GetAbsOrigin(), attackerUnit, 0, true)
+							SpawnIndex = SpawnIndex + 1
+							if SpawnIndex >= TableLength(NeutralItemsData[tostring(CurrentTier)]) then
+								CurrentTier = CurrentTier + 1
+								SpawnIndex = 0
+							end
+						end
+					end	
+				end
+
+			end
+		end
+	end
+
 end

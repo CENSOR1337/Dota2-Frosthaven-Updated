@@ -45,8 +45,6 @@ function modifier_penguin_herder_movement:CreateSledParticle()
 end
 
 function modifier_penguin_herder_movement:GetSpeed()
-	return 1000
-	--[[
 	local hUnit = self:GetParent()
 	local flSpeed = self.speed;
 	if hUnit.hTrain ~= nil then
@@ -54,7 +52,6 @@ function modifier_penguin_herder_movement:GetSpeed()
 	end
 	--printf("herder speed %s", flSpeed)
 	return flSpeed
-	]]--
 end
 
 ----------------------------------------------------------------------------------
