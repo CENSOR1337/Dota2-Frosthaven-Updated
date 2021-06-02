@@ -207,5 +207,5 @@ end
 --------------------------------------------------------------------------------------------------------
 function CHoldout:OnPlayerPickHero(event)
 	local hero = EntIndexToHScript(event.heroindex)
-	hero:SetGold(2500, false)
+	hero:SetGold(99999, false)
 end
