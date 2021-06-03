@@ -275,14 +275,14 @@
 
 		"Unit1"
 		{
-			"NPCName"				"npc_dota_creature_multiplying_eidelon"
+			"NPCName"				"npc_dota_creature_eidelon"
 			"TotalUnitsToSpawn"		"24"
 			"UnitsPerSpawn"			"8"
 			"SpawnInterval"			"8"
 		}
 		"Unit2"
 		{
-			"NPCName"				"npc_dota_creature_multiplying_eidelon"
+			"NPCName"				"npc_dota_creature_eidelon"
 			"WaitForTime"			"15"
 			"TotalUnitsToSpawn"		"48"
 			"UnitsPerSpawn"			"12"
@@ -290,7 +290,7 @@
 		}
 		"Unit3"
 		{
-			"NPCName"				"npc_dota_creature_multiplying_eidelon"
+			"NPCName"				"npc_dota_creature_eidelon"
 			"WaitForTime"			"15"
 			"TotalUnitsToSpawn"		"48"
 			"UnitsPerSpawn"			"12"
@@ -298,7 +298,7 @@
 		}
 		"Unit4"
 		{
-			"NPCName"				"npc_dota_creature_multiplying_eidelon"
+			"NPCName"				"npc_dota_creature_eidelon"
 			"WaitForTime"			"40"
 			"TotalUnitsToSpawn"		"56"
 			"UnitsPerSpawn"			"14"
@@ -306,7 +306,7 @@
 		}
 		"Unit5"
 		{
-			"NPCName"				"npc_dota_creature_multiplying_eidelon"
+			"NPCName"				"npc_dota_pinecone_warrior"
 			"WaitForTime"			"40"
 			"TotalUnitsToSpawn"		"56"
 			"UnitsPerSpawn"			"14"
@@ -315,7 +315,7 @@
 		"Unit6"
 		{
 			"NPCName"				"npc_dota_creature_jakiro"
-			"TotalUnitsToSpawn"		"3"
+			"TotalUnitsToSpawn"		"3"	//"3"
 			"UnitsPerSpawn"			"1"
 			"GroupWithUnit"			"Unit1"
 		}
@@ -336,14 +336,14 @@
 		"Unit9"
 		{
 			"NPCName"				"npc_dota_creature_jakiro"
-			"TotalUnitsToSpawn"		"6"
+			"TotalUnitsToSpawn"		"4"	//"6"
 			"UnitsPerSpawn"			"1"
 			"GroupWithUnit"			"Unit4"
 		}
 		"Unit10"
 		{
 			"NPCName"				"npc_dota_creature_jakiro"
-			"TotalUnitsToSpawn"		"6"
+			"TotalUnitsToSpawn"		"4"	//"6"
 			"UnitsPerSpawn"			"1"
 			"GroupWithUnit"			"Unit5"
 		}
