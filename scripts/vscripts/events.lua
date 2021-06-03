@@ -210,8 +210,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function CHoldout:OnPlayerPickHero(event)
 	local hero = EntIndexToHScript(event.heroindex)
-	hero:SetGold(1600, false)
-
+	hero:SetGold( hero:GetGold() + 1000 , false)
 	NeutralItems = LoadKeyValues("scripts/npc/neutral_items.txt")
 	if(NeutralItems) then
 		for key, value in pairs(NeutralItems) do
