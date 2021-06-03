@@ -228,9 +228,13 @@ function CHoldout:DropTheNeutralItem(event)
 
 	if killedUnit and killedUnit:IsCreature() then
 		if attackerUnit and attackerUnit:IsRealHero() then
+			chance = 1
 			if killedUnit:IsCreepHero() then
+				chance = 20
+			end
+
 				LastTier = TableLength(NeutralItemsData)
-				if RollPercentage(20) then
+				if RollPercentage(chance) then
 				if (CurrentTier <= LastTier) then
 					if SpawnIndex <= TableLength(NeutralItemsData[tostring(CurrentTier)]) then
 							DropNeutralItemAtPositionForHero(GetPotentialNeutralItemDrop(CurrentTier, attackerUnit:GetTeam()), killedUnit:GetAbsOrigin(), attackerUnit, 0, true)
@@ -241,10 +245,7 @@ function CHoldout:DropTheNeutralItem(event)
 							end
 						end
 					end	
-				end
-
 			end
 		end
 	end
-
 end
