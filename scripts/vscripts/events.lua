@@ -228,9 +228,14 @@ function CHoldout:DropTheNeutralItem(event)
 
 	if killedUnit and killedUnit:IsCreature() then
 		if attackerUnit and attackerUnit:IsRealHero() then
-			chance = 1
+			chance = 0
+
+			if RollPercentage(1) then
+				chance = 10
+			end	
+
 			if killedUnit:IsCreepHero() then
-				chance = 20
+				chance = 15
 			end
 
 				LastTier = TableLength(NeutralItemsData)
