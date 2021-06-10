@@ -210,7 +210,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function CHoldout:OnPlayerPickHero(event)
 	local hero = EntIndexToHScript(event.heroindex)
-	hero:SetGold( hero:GetGold() + 1000 , false)
+	hero:SetGold( hero:GetGold() + 1200 , false)
 	NeutralItems = LoadKeyValues("scripts/npc/neutral_items.txt")
 	if(NeutralItems) then
 		for key, value in pairs(NeutralItems) do
@@ -231,11 +231,11 @@ function CHoldout:DropTheNeutralItem(event)
 			chance = 0
 
 			if RollPercentage(1) then
-				chance = 10
+				chance = 25
 			end	
 
 			if killedUnit:IsCreepHero() then
-				chance = 15
+				chance = 20
 			end
 
 				LastTier = TableLength(NeutralItemsData)
