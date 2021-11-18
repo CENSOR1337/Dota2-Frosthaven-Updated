@@ -65,7 +65,7 @@ _G.XP_PER_LEVEL_TABLE = {
 
 --------------------------------------------------------------------------------
 
-_G.STARTING_GOLD = 625
+_G.STARTING_GOLD = 1200
 _G.ROUND_EXPECTED_VALUES_TABLE = 
 {
 	{ gold = STARTING_GOLD, xp = 0 }, -- 1
