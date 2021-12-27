@@ -225,6 +225,14 @@ function CHoldout:OnPlayerPickHero(event)
 
 end
 
+function RandomFloat(max)
+    return math.random() * (max or 1)
+end
+
+function RollChanceByPercent(chance)
+    return RandomFloat(100) <= chance
+end
+
 function CHoldout:DropTheNeutralItem(event)
 
     local attackerUnit = EntIndexToHScript(event.entindex_attacker or -1)
@@ -232,14 +240,20 @@ function CHoldout:DropTheNeutralItem(event)
 
     if killedUnit and killedUnit:IsCreature() then
         if attackerUnit and attackerUnit:IsRealHero() then
-            local chance = 2
+            local chance = 1.5
+            local doDropItem = false
 
             if killedUnit:IsCreepHero() then
                 chance = 25
             end
 
+            if RollChanceByPercent(chance) then
+                doDropItem = true
+            end
+
             LastTier = TableLength(NeutralItemsData)
-            if RollPercentage(chance) then
+
+            if (doDropItem) then
                 if (CurrentTier <= LastTier) then
                     if SpawnIndex <= TableLength(NeutralItemsData[tostring(CurrentTier)]) then
                         DropNeutralItemAtPositionForHero(
