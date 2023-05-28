@@ -133,7 +133,7 @@ function modifier_creature_ginger_rosh:OnIntervalThink()
 							newItem:SetCurrentCharges( nGoldAmount / nBagsToDrop )
 							local drop = CreateItemOnPositionSync( hUnit:GetAbsOrigin(), newItem )
 							local flRange = 100+nGoldAmount/1.5
-							newItem:LaunchLoot( true, 250, 0.75, hUnit:GetAbsOrigin() + Vector( RandomFloat(-flRange,flRange), RandomFloat(-flRange, flRange), 0) )
+							newItem:LaunchLoot( true, 250, 0.75, hUnit:GetAbsOrigin() + Vector( RandomFloat(-flRange,flRange), RandomFloat(-flRange, flRange), 0), nil  )
 							drop:SetModelScale( RemapValClamped( nGoldAmount, 100, 200, 1, 1.5) )
 						end	
 					end

@@ -69,7 +69,7 @@ function modifier_creature_herding_penguin:DropLoot()
 		local drop = CreateItemOnPositionSync( hUnit:GetAbsOrigin(), newItem )
 		local flModelScale = hScaleTable[ nTableIndex ]
 		drop:SetModelScale(flModelScale)
-		newItem:LaunchLoot( true, 50, 0.3, hUnit.hHerder:GetAbsOrigin() )
+		newItem:LaunchLoot( true, 50, 0.3, hUnit.hHerder:GetAbsOrigin(), nil  )
 		
 		ExecuteOrderFromTable({
 		UnitIndex = hUnit:entindex(),
@@ -178,7 +178,7 @@ function modifier_creature_herding_penguin:OnIntervalThink()
 					newItem:SetPurchaseTime( 0 )
 					newItem:SetCurrentCharges( nGoldAmount*5 )
 					local drop = CreateItemOnPositionSync( hUnit.hHerder:GetAbsOrigin(), newItem )
-					newItem:LaunchLoot( true, 0, 0, hUnit.hHerder:GetAbsOrigin() )
+					newItem:LaunchLoot( true, 0, 0, hUnit.hHerder:GetAbsOrigin(), nil  )
 	
 					--printf("peng index %d, penguin %s, move target %s", hUnit.nPenguinIndex, hUnit, hUnit.hMoveTarget)
 

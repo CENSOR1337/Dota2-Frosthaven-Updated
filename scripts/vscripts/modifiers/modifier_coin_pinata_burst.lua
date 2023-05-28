@@ -98,7 +98,7 @@ function modifier_coin_pinata_burst:CreateCoins( vAttackerFwd )
 			local hPhysicalItem = CreateItemOnPositionSync( self:GetParent():GetAbsOrigin(), newItem )
 			hPhysicalItem:SetModelScale( self.gold_bag_modelscale )
 			local vDropTarget = vSpawnPos
-			newItem:LaunchLoot( true, 100, 0.4, vDropTarget ) -- an item is made auto-pickup-able by LaunchLoot
+			newItem:LaunchLoot( true, 100, 0.4, vDropTarget, nil ) -- an item is made auto-pickup-able by LaunchLoot
 		end
 	end
 end

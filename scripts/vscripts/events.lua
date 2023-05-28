@@ -71,7 +71,7 @@ function CHoldout:OnEntityKilled(event)
             drop.Holdout_IsLootDrop = true
 
             local dropTarget = killedUnit:GetAbsOrigin() + RandomVector(RandomFloat(50, 350))
-            newItem:LaunchLoot(true, 300, 0.75, dropTarget)
+            newItem:LaunchLoot(true, 300, 0.75, dropTarget, nil )
         end
         if RollPercentage(5) then
             local newItem = CreateItem("item_mana_potion", nil, nil)
@@ -83,7 +83,7 @@ function CHoldout:OnEntityKilled(event)
             drop.Holdout_IsLootDrop = true
 
             local dropTarget = killedUnit:GetAbsOrigin() + RandomVector(RandomFloat(50, 350))
-            newItem:LaunchLoot(true, 300, 0.75, dropTarget)
+            newItem:LaunchLoot(true, 300, 0.75, dropTarget, nil )
         end
     end
 

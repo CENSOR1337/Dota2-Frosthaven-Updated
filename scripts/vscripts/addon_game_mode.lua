@@ -659,7 +659,7 @@ function CHoldout:CheckForLootItemDrop( killedUnit )
 			drop.Holdout_IsLootDrop = true
 			if itemDropInfo.szItemName ~= "item_tpscroll" then
 				local dropTarget = killedUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
-				newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+				newItem:LaunchLoot( true, 300, 0.75, dropTarget, nil )
 			end
 		end
 	end
@@ -899,7 +899,7 @@ function CHoldout:_GoldDropConsoleCommand( cmdName, goldToDrop )
 		spawnPoint = heroEnt:GetAbsOrigin()
 	end
 	local drop = CreateItemOnPositionSync( spawnPoint, newItem )
-	newItem:LaunchLoot( true, 300, 0.75, spawnPoint + RandomVector( RandomFloat( 50, 350 ) ) )
+	newItem:LaunchLoot( true, 300, 0.75, spawnPoint + RandomVector( RandomFloat( 50, 350 ) ), nil )
 end
 
 --------------------------------------------------------------------------------

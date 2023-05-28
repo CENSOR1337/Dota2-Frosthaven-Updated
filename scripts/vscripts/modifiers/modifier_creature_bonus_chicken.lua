@@ -89,7 +89,7 @@ function modifier_creature_bonus_chicken:OnTakeDamage( params )
 					
 				local drop = CreateItemOnPositionSync( hUnit:GetAbsOrigin(), newItem )
 				local dropTarget = hUnit:GetAbsOrigin() + RandomVector( RandomFloat( 50, 250 ) )
-				newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+				newItem:LaunchLoot( true, 300, 0.75, dropTarget, nil )
 
 				self.flAccumDamage = self.flAccumDamage - 100
 				self.nBagsDropped = self.nBagsDropped + 1
