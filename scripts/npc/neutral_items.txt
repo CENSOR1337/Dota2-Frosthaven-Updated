@@ -34,6 +34,8 @@
 			"item_royal_jelly"				  "1"
 			"item_faded_broach"				  "1"
 			"item_ironwood_tree"				  "1"
+			"item_duelist_gloves"		      "1"
+            "item_spark_of_courage"			  "1"
 		}
 	}
 	"2"
@@ -68,6 +70,7 @@
 			"item_dagger_of_ristul"			"1"
 			"item_specialists_array"			"1"
 			"item_eye_of_the_vizier"				  "1"
+            "item_gossamer_cape"				  "1"
 
 		}
 	}
@@ -102,6 +105,10 @@
 			"item_psychic_headband"				"1"
 			"item_slime_vial"					"1"
 			"item_ogre_seal_totem"					"1"
+            "item_dandelion_amulet"			  "1"
+            "item_defiant_shell"			  "1"
+            "item_vindicators_axe"			  "1"
+            "item_martyrs_plate"			  "1"
 		}
 	}
 	"4"
