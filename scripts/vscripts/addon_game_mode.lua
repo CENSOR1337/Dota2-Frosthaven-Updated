@@ -122,6 +122,10 @@ function CHoldout:InitGameMode()
  	GameRules:GetGameModeEntity():SetHudCombatEventsDisabled( true )
  	GameRules:SetFirstBloodActive( false )
 
+    GameRules:GetGameModeEntity():SetNeutralStashEnabled(false)
+    GameRules:GetGameModeEntity():SetNeutralStashTeamViewOnlyEnabled(true)
+    GameRules:GetGameModeEntity():SetGiveFreeTPOnDeath(false)
+
 	-- keep these in sync with frostivus_2018.eventdef
 	self._periodic_points_scale_normal_event_points = 8
 	self._periodic_points_bonus_normal_event_points = 1000
@@ -176,9 +180,6 @@ function CHoldout:InitGameMode()
 	ListenToGameEvent( "dota_player_used_ability", Dynamic_Wrap( CHoldout, "OnPlayerUsedAbility" ), self )
 	ListenToGameEvent( "dota_item_picked_up", Dynamic_Wrap( CHoldout, "OnItemPickedUp" ), self )
 	ListenToGameEvent( "dota_player_pick_hero", Dynamic_Wrap( CHoldout, "OnPlayerPickHero"), self)
-
-	-- Drop neutral item --
-	ListenToGameEvent( "entity_killed", Dynamic_Wrap(CHoldout, "DropTheNeutralItem"), self)
 
 	GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( CHoldout, "ModifierGainedFilter" ), self )
 	--ListenToGameEvent( "player_reconnected", Dynamic_Wrap( CHoldout, "OnPlayerReconnected" ), self )

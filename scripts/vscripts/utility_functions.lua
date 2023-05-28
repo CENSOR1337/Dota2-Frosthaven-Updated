@@ -131,14 +131,6 @@ function TableFindKey( table, val )
 	return nil
 end
 
-function TableLength( t )
-	local nCount = 0
-	for _ in pairs( t ) do
-		nCount = nCount + 1
-	end
-	return nCount
-end
-
 function tablefirstkey( t )
 	for k, _ in pairs( t ) do
 		return k

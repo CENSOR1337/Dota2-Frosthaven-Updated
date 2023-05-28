@@ -1,7 +1,3 @@
-local NeutralItemsData = {}
-local CurrentTier = 1
-local SpawnIndex = 0
-
 function CHoldout:OnNPCSpawned(event)
     local spawnedUnit = EntIndexToHScript(event.entindex)
     if not spawnedUnit or spawnedUnit:GetClassname() == "npc_dota_thinker" or spawnedUnit:IsPhantom() then
@@ -216,57 +212,116 @@ end
 function CHoldout:OnPlayerPickHero(event)
     local hero = EntIndexToHScript(event.heroindex)
     hero:SetGold(hero:GetGold() + 1200, false)
-    NeutralItems = LoadKeyValues("scripts/npc/neutral_items.txt")
-    if (NeutralItems) then
-        for key, value in pairs(NeutralItems) do
-            NeutralItemsData[key] = value["items"]
+end
+
+-- Neutral Items drop system
+--------------------------------------------------------------------------------------------------------
+
+local function tableLength(t)
+    local nCount = 0
+    for _ in pairs(t) do
+        nCount = nCount + 1
+    end
+    return nCount
+end
+
+--------------------------------------------------------------------------------------------------------
+local neutralItemsData = {}
+local currentTier = 1
+local spawnIndex = 0
+local lastTier = 0
+
+local neutralItemNameMap = {}
+local function isNeutralItem(itemName)
+    return neutralItemNameMap[itemName] ~= nil
+end
+
+local neutralItems = LoadKeyValues("scripts/npc/neutral_items.txt")
+if (neutralItems) then
+    for key, value in pairs(neutralItems) do
+        local items = value["items"]
+        neutralItemsData[key] = {
+            items = items,
+            amount = tableLength(items),
+        }
+        for itemname, _ in pairs(items) do
+            neutralItemNameMap[itemname] = true
         end
     end
-
+    lastTier = tableLength(neutralItemsData)
 end
 
-function RandomFloat(max)
-    return math.random() * (max or 1)
+local function getNeutralItemsFormTier(tier)
+    return neutralItemsData[tostring(tier)]
 end
 
-function RollChanceByPercent(chance)
-    return RandomFloat(100) <= chance
+local function rollChanceByPercent(chance)
+    local rFloath = math.random() * 100
+    return chance >= rFloath
 end
 
-function CHoldout:DropTheNeutralItem(event)
-
+local function dropTheNeutralItem(event)
     local attackerUnit = EntIndexToHScript(event.entindex_attacker or -1)
     local killedUnit = EntIndexToHScript(event.entindex_killed)
 
-    if killedUnit and killedUnit:IsCreature() then
-        if attackerUnit and attackerUnit:IsRealHero() then
-            local chance = 1.5
-            local doDropItem = false
+    if not (killedUnit) then return end
+    if not (killedUnit:IsCreature()) then return end
+    if not (attackerUnit) then return end
+    if not (attackerUnit:IsRealHero()) then return end
 
-            if killedUnit:IsCreepHero() then
-                chance = 25
-            end
+    local chance = killedUnit:IsCreepHero() and 25 or 1.5
+    if not (rollChanceByPercent(chance)) then return end
 
-            if RollChanceByPercent(chance) then
-                doDropItem = true
-            end
+    if (currentTier > lastTier) then return end
+    local neutralItems = getNeutralItemsFormTier(currentTier)
+    if spawnIndex > neutralItems.amount then
+        return
+    end
 
-            LastTier = TableLength(NeutralItemsData)
-
-            if (doDropItem) then
-                if (CurrentTier <= LastTier) then
-                    if SpawnIndex <= TableLength(NeutralItemsData[tostring(CurrentTier)]) then
-                        DropNeutralItemAtPositionForHero(
-                            GetPotentialNeutralItemDrop(CurrentTier, attackerUnit:GetTeam()), killedUnit:GetAbsOrigin(),
-                            attackerUnit, 0, true)
-                        SpawnIndex = SpawnIndex + 1
-                        if SpawnIndex >= TableLength(NeutralItemsData[tostring(CurrentTier)]) then
-                            CurrentTier = CurrentTier + 1
-                            SpawnIndex = 0
-                        end
-                    end
-                end
-            end
-        end
+    local neutralItemDrop = GetPotentialNeutralItemDrop(currentTier, attackerUnit:GetTeam())
+    DropNeutralItemAtPositionForHero(neutralItemDrop, killedUnit:GetAbsOrigin(), attackerUnit, 0, true)
+    spawnIndex = spawnIndex + 1
+    if (spawnIndex >= neutralItems.amount) then
+        currentTier = currentTier + 1
+        spawnIndex = 0
     end
 end
+-- Event handler for item pickup
+local function OnItemPickedUp(event)
+    local itemname = event.itemname
+    local playerId = event.PlayerID
+    local itemEntityIndex = event.ItemEntityIndex
+
+    if not (isNeutralItem(itemname)) then return end
+    local item = EntIndexToHScript(itemEntityIndex)
+    if not (item) then return end
+
+    item:SetPurchaser(nil)
+    item:SetShareability(1)
+    item:SetStacksWithOtherOwners(true)
+end
+
+-- Drop neutral item --
+ListenToGameEvent("dota_item_picked_up", OnItemPickedUp, nil)
+ListenToGameEvent("entity_killed", dropTheNeutralItem, nil)
+
+--- Drop NeutralItem Command
+local function dropTheNeutralItemCommand(cmdName)
+    local attackerUnit = PlayerResource:GetSelectedHeroEntity(0)
+    if not (attackerUnit) then return end
+    if (currentTier > lastTier) then return end
+    local neutralItems = getNeutralItemsFormTier(currentTier)
+    if spawnIndex > neutralItems.amount then
+        return
+    end
+
+    local neutralItemDrop = GetPotentialNeutralItemDrop(currentTier, attackerUnit:GetTeam())
+    DropNeutralItemAtPositionForHero(neutralItemDrop, attackerUnit:GetAbsOrigin(), attackerUnit, 0, true)
+    spawnIndex = spawnIndex + 1
+    if (spawnIndex >= neutralItems.amount) then
+        currentTier = currentTier + 1
+        spawnIndex = 0
+    end
+end
+
+Convars:RegisterCommand("holdout_neutral_drop", dropTheNeutralItemCommand, "Spawn a neutral item.", FCVAR_CHEAT)
