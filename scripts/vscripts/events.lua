@@ -261,6 +261,12 @@ local function rollChanceByPercent(chance)
 end
 
 local function dropTheNeutralItem(event)
+    if (currentTier > lastTier) then return end
+    local neutralItems = getNeutralItemsFormTier(currentTier)
+    if (spawnIndex > neutralItems.amount) then
+        return
+    end
+
     local attackerUnit = EntIndexToHScript(event.entindex_attacker or -1)
     local killedUnit = EntIndexToHScript(event.entindex_killed)
 
@@ -271,12 +277,6 @@ local function dropTheNeutralItem(event)
 
     local chance = killedUnit:IsCreepHero() and 25 or 1.5
     if not (rollChanceByPercent(chance)) then return end
-
-    if (currentTier > lastTier) then return end
-    local neutralItems = getNeutralItemsFormTier(currentTier)
-    if spawnIndex > neutralItems.amount then
-        return
-    end
 
     local neutralItemDrop = GetPotentialNeutralItemDrop(currentTier, attackerUnit:GetTeam())
     DropNeutralItemAtPositionForHero(neutralItemDrop, killedUnit:GetAbsOrigin(), attackerUnit, 0, true)
