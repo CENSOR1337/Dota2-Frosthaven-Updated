@@ -122,9 +122,10 @@ function CHoldout:InitGameMode()
  	GameRules:GetGameModeEntity():SetHudCombatEventsDisabled( true )
  	GameRules:SetFirstBloodActive( false )
 
+    GameRules:GetGameModeEntity():SetNeutralItemHideUndiscoveredEnabled(true)
     GameRules:GetGameModeEntity():SetNeutralStashEnabled(false)
-    GameRules:GetGameModeEntity():SetNeutralStashTeamViewOnlyEnabled(true)
-    GameRules:GetGameModeEntity():SetGiveFreeTPOnDeath(false)
+    GameRules:GetGameModeEntity():SetNeutralStashTeamViewOnlyEnabled(false)
+    --GameRules:GetGameModeEntity():SetGiveFreeTPOnDeath(false)
 
 	-- keep these in sync with frostivus_2018.eventdef
 	self._periodic_points_scale_normal_event_points = 8
