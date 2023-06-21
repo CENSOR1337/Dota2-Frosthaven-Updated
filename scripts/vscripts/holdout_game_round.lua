@@ -388,7 +388,7 @@ function CHoldoutGameRound:OnEntityKilled( event )
 			if hero ~= nil and hero:IsRealHero() and hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
                 local pCount = PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS)
                 local xp = math.ceil( self:GetXPPerCoreUnit() / pCount)
-                xp = xp * 1.25
+                xp = xp * 1.10
 				hero:AddExperience( xp, DOTA_ModifyXP_CreepKill, false, true )
 			end
 		end
