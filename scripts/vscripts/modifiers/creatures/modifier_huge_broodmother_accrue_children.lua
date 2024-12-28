@@ -36,6 +36,13 @@ function modifier_huge_broodmother_accrue_children:OnDeath( params )
 				hDummy.nAmountToSpawn = self.babies_to_spawn
 				hDummy.hInitialGoalEntity = self:GetParent():GetInitialGoalEntity()
 				hDummy:AddAbility( "huge_broodmother_generate_children" ) -- the dummy is a creature and creatures auto-level their abilities
+
+                 -- @UpdateModified Begin: fixed ability not being activate due to level 0
+                 local ability = hDummy:FindAbilityByName("huge_broodmother_generate_children")
+                 if (ability) then
+                     ability:SetLevel(1)
+                 end
+                 -- @UpdateModified End
 			end
 		end
 	end

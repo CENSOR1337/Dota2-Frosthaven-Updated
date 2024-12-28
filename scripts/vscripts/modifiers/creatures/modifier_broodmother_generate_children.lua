@@ -78,7 +78,7 @@ function modifier_broodmother_generate_children:CreateBaby()
 			vLocY = vLoc.y,
 			vLocZ = vLoc.z,
 		}
-		hBaby:AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_frostivus2018_broodbaby_launch", kv )
+		--hBaby:AddNewModifier( self:GetParent(), self:GetAbility(), "modifier_frostivus2018_broodbaby_launch", kv )
 
 		EmitSoundOn( "Creature_Broodmother.CreateBabySpider", hBaby )
 	end
@@ -91,7 +91,7 @@ function modifier_broodmother_generate_children:TryToRemoveMyself()
 		-- Are all my babies done with their movement modifier?
 		self.bSafeToRemove = true
 		for _, hBaby in pairs( self.hBabies ) do
-			if hBaby ~= nil and hBaby:IsNull() == false and hBaby:IsAlive() and hBaby:HasModifier( "modifier_frostivus2018_broodbaby_launch" ) then
+			if hBaby ~= nil and hBaby:IsNull() == false and hBaby:IsAlive() --[[ and hBaby:HasModifier( "modifier_frostivus2018_broodbaby_launch" ) ]] then
 				self.bSafeToRemove = false
 			end
 		end
