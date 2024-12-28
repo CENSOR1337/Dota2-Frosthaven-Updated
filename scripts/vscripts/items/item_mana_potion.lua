@@ -20,7 +20,9 @@ function item_mana_potion:OnSpellStart()
 		local nFXIndex = ParticleManager:CreateParticle( "particles/items3_fx/mango_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster() )
 		ParticleManager:ReleaseParticleIndex( nFXIndex )
 
-		self:SpendCharge()
+        -- @UpdateModified Begin: fix SpendCharge missing parameter
+		self:SpendCharge(0.01)
+        -- @UpdateModified End
 	end
 end
 
