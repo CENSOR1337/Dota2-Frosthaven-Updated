@@ -4,6 +4,10 @@
 
 This is a custom game mode for Dota 2, based on the Frosthaven event from the game. Which originally contains couple issues, and this aims to fix them, also adding some new features which contain in Dota 2 vanilla game mode, such as neutral items, and some other stuff.
 
+## Links
+
+- [Dota 2 Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2504778078)
+
 ## Notes
 
 If you encounter any issues, please report them but also keep in mind that this is only a hobby project, I'm doing this in my free time, so I can't guarantee that I will fix them in a timely manner.
