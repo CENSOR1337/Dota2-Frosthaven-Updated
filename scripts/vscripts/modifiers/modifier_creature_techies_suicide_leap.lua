@@ -60,7 +60,9 @@ function modifier_creature_techies_suicide_leap:OnCreated( kv )
 		local flArcDeltaZ = flArcTopZ - self.vStartPosition.z
 		self.flInitialVelocityZ = math.sqrt( 2.0 * flArcDeltaZ * TECHIES_ACCELERATION_Z )
 
-		local flDeltaZ - self.vLastKnownTargetPos.z - self.vStartPosition.z
+        -- @UpdateModified Begin: fix typo
+		local flDeltaZ = self.vLastKnownTargetPos.z - self.vStartPosition.z
+        -- @UpdateModified End
 		local flSqrtDet = math.sqrt( math.max( 0, ( self.flInitialVelocityZ * self.flInitialVelocityZ ) - 2.0 * TECHIES_ACCELERATION_Z * flDeltaZ ) )
 		self.flPredictedTotalTime = math.max( ( self.flInitialVelocityZ + flSqrtDet) / TECHIES_ACCELERATION_Z, ( self.flInitialVelocityZ - flSqrtDet) / TECHIES_ACCELERATION_Z )
 
