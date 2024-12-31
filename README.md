@@ -20,8 +20,6 @@ dota_launch_custom_game winter_2018_updated winter
 
 ## Known Issues
 
-- Cannot revive teammates.
-- Cannot pick up gold, after done any interacting with fallen teammates.
 - Round 2, Boss doesn't create tombstones.
 - Round 6, Boss doesn't throw burning lavas.
 - Round 7, Broodmother spider children doesn't do damage on spawn (normally it's would lunch itself from the mother and do damage on landing).
@@ -31,6 +29,8 @@ dota_launch_custom_game winter_2018_updated winter
 
 ## Fixed Issues
 
+- Cannot revive teammates.
+- Cannot pick up gold, after done any interacting with fallen teammates.
 - add neutral items.
 - remove non vanilla abilities.
 - Round 5, not able to control penguin.
