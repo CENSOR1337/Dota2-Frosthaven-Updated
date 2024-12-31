@@ -44,6 +44,7 @@ function LinkModifiers()
 	LinkLuaModifier( "modifier_wind_thinker", "modifiers/modifier_wind_thinker", LUA_MODIFIER_MOTION_NONE )
 	LinkLuaModifier( "modifier_provides_fow_position", "modifiers/modifier_provides_fow_position", LUA_MODIFIER_MOTION_NONE )
 	LinkLuaModifier( "modifier_penguin_herder_movement", "modifiers/modifier_penguin_herder_movement", LUA_MODIFIER_MOTION_HORIZONTAL )
+	LinkLuaModifier("modifier_tombstone2","modifiers/modifier_tombstone2", LUA_MODIFIER_MOTION_NONE)
 end
 
 --------------------------------------------------------------------------------

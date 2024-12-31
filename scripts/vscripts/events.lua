@@ -95,13 +95,15 @@ function CHoldout:OnEntityKilled_PlayerHero(event)
     local killedUnit = EntIndexToHScript(event.entindex_killed)
     local attackerUnit = EntIndexToHScript(event.entindex_attacker)
 
-    local newItem = CreateItem("item_tombstone", killedUnit, killedUnit)
-    newItem:SetPurchaseTime(0)
-    newItem:SetPurchaser(killedUnit)
-    local tombstone = SpawnEntityFromTableSynchronous("dota_item_tombstone_drop", {})
-    tombstone:SetContainedItem(newItem)
-    tombstone:SetAngles(0, RandomFloat(0, 360), 0)
-    FindClearSpaceForUnit(tombstone, killedUnit:GetAbsOrigin(), true)
+    -- local newItem = CreateItem("item_tombstone", killedUnit, killedUnit)
+    -- newItem:SetPurchaseTime(0)
+    -- newItem:SetPurchaser(killedUnit)
+    -- local tombstone = SpawnEntityFromTableSynchronous("dota_item_tombstone_drop", {})
+    -- tombstone:SetContainedItem(newItem)
+    -- tombstone:SetAngles(0, RandomFloat(0, 360), 0)
+    -- FindClearSpaceForUnit(tombstone, killedUnit:GetAbsOrigin(), true)
+
+    CreateModifierThinker(killedUnit,self,"modifier_tombstone2",{},killedUnit:GetOrigin(),killedUnit:GetTeamNumber(),false)
 
     self:ResetKillsWithoutDying(killedUnit:GetPlayerOwnerID())
 
