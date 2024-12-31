@@ -210,8 +210,6 @@ end
 
 --------------------------------------------------------------------------------------------------------
 function CHoldout:OnPlayerPickHero(event)
-    local hero = EntIndexToHScript(event.heroindex)
-    hero:SetGold(hero:GetGold() + 1200, false)
 end
 
 -- Neutral Items drop system

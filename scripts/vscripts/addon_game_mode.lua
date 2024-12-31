@@ -189,10 +189,11 @@ function CHoldout:InitGameMode()
 	-- Register OnThink with the game engine so it is called every 0.25 seconds
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, 0.25 ) 
 
-    -- @UpdateModified Begin: add npc heroes to blacklist
+    -- @UpdateModified Begin: add npc heroes to blacklist, set starting gold to 1800
     GameRules:AddHeroToBlacklist("npc_dota_hero_rubick")
     GameRules:AddHeroToBlacklist("npc_dota_hero_elder_titan")
     GameRules:SetHideBlacklistedHeroes(false) -- it's ok to show them, just to let them know they are blacklisted
+    GameRules:SetStartingGold(1800)
     -- @UpdateModified End
 end
 
